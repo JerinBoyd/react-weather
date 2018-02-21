@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       lat: 0,
@@ -12,47 +13,54 @@ class App extends Component {
     this.handleLonChange = this.handleLonChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleLatChange(e){
+  handleLatChange(e) {
     this.setState({
       lat: +e.target.value
-    })
+    });
   }
-  handleLonChange(e){
+  handleLonChange(e) {
     this.setState({
       lon: +e.target.value
-    })
+    });
   }
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault();
-    console.log('jerk');
-
+    console.log("jerk");
+   
+    axios
+      .get(url)
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
   }
   render() {
     return (
       <div>
         <h1>React-Weather</h1>
         <p>Enter your latitude and longitude to get local weather!</p>
-        <form onSubmit={(e) => this.handleSubmit(e)}>
-        <label>
-          Latitude:
-          <input type="number" 
-          min="-90"
-          max="90"
-          onChange={(e) => this.handleLatChange(e)}
-          value={this.state.lat} 
-          required/>
-        </label>
-        <label>
-          longitude:
-          <input type="number"  
-          min="-180"
-          max="180"
-          onChange={(e) => this.handleLonChange(e)} 
-          value={this.state.lon} 
-          required/>
-        </label>
-        <button type='submit'>Get the Weather!</button>
-
+        <form onSubmit={e => this.handleSubmit(e)}>
+          <label>
+            Latitude:
+            <input
+              type="number"
+              min="-90"
+              max="90"
+              onChange={e => this.handleLatChange(e)}
+              value={this.state.lat}
+              required
+            />
+          </label>
+          <label>
+            longitude:
+            <input
+              type="number"
+              min="-180"
+              max="180"
+              onChange={e => this.handleLonChange(e)}
+              value={this.state.lon}
+              required
+            />
+          </label>
+          <button type="submit">Get the Weather!</button>
         </form>
       </div>
     );
