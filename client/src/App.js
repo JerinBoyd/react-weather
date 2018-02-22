@@ -27,10 +27,7 @@ class App extends Component {
     e.preventDefault();
     console.log("jerk");
    
-    axios
-      .get(url)
-      .then(response => console.log(response))
-      .catch(err => console.error(err));
+    
   }
   render() {
     return (
