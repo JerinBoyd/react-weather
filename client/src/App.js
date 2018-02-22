@@ -2,7 +2,19 @@ import React, { Component } from "react";
 import "./App.css";
 import { getWeather } from './services/weather';
 
-
+const CurrentWeather = props => {
+  return (
+    <section>
+      <ul>
+        <li> Time: {props.time}</li>
+        <li>Summary: {props.summary}</li>
+        <li>Icon: {props.icon}</li>
+        <li>Teamperature: {props.teamperature}</li>
+      </ul>
+    </section>
+    
+  )
+}
 class App extends Component {
   constructor() {
     super();
@@ -71,9 +83,11 @@ class App extends Component {
           </label>
           <button type="submit">Get the Weather!</button>
         </form>
-        <pre>
-          {JSON.stringify(this.state.currentWeather, null, 4)}
-        </pre>
+      
+        {Object.keys(this.state.currentWeather).length === 0
+        ?  
+        "":
+        <CurrentWeather {...this.state.currentWeather}/>}
       </div>
     );
   }
