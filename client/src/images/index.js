@@ -13,4 +13,5 @@ const selection = (name) => {
     }
     return rain;
 }
+
 export default selection;
