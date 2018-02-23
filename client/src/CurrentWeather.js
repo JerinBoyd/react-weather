@@ -13,18 +13,18 @@ const CurrentWeather = props => {
           <li> Time: {convertTimestamp(props.time)}</li>
           <li>Summary: {props.summary}</li>
           <li>Icon: {props.icon}</li>
-          <li>Teamperature: {props.teamperature}</li>
+          <li>Temperature: {props.temperature}</li>
         </ul>
       </section>
       
     )
   }
 
-  CurrentWeather.PropTypes = {
+  CurrentWeather.propTypes = {
       time: PropTypes.number.isRequired,
       summary: PropTypes.string.isRequired,
       icon: PropTypes.string.isRequired,
-      teamperature: PropTypes.number.isRequired
+      temperature: PropTypes.number.isRequired
 
   }
 
