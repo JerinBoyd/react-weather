@@ -1,6 +1,7 @@
 //imports
 const express = require("express");
 const axios = require("axios");
+const path = require('path');
 
 //configuration
 require("dotenv").config();
@@ -10,6 +11,9 @@ const { API_KEY } = process.env;
 //creation of stuff
 const serverApp = express();
 const port = process.env.PORT || 5000;
+
+//MIDDLEWARE (POWERUPS)
+serverApp.use(express.static('client/build'));
 
 serverApp.get("/forecast/:lat,:lon", function(request, response) {
   const { lat, lon } = request.params;
@@ -25,6 +29,11 @@ serverApp.get("/forecast/:lat,:lon", function(request, response) {
       });
     });
 });
+
+//THIS SERVES THE FINISHED REACT APP
+serverApp.get('*', (request, response) => {
+     response.sendFile('index.html', {root: path.resolve('client/build')});
+  });
 
 serverApp.listen(port, () => {
   console.log("now listening on port ${port}");
